@@ -2,22 +2,23 @@ version: '3'
 
 services:
 
-  node:
+  app:
     build: 
       context: node
-    container_name: node
+    container_name: app
     networks: 
-      - node-rede
-      
-  ngnix:
+      - frontend-networks
+
+  proxy:
     build:
       context: ngnix
-    container_name: ngnix
+    container_name: proxy
     networks: 
-      - node-rede
+      - frontend-networks
     ports: 
       - "8080:80"  
 
 networks: 
-  node-rede:
+  frontend-networks:
+    name: frontend-networks
     driver: bridge
