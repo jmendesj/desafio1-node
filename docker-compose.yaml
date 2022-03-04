@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  node:
+    build: 
+      context: node
+    container_name: node
+    networks: 
+      - node-rede
+      
+  ngnix:
+    build:
+      context: ngnix
+    container_name: ngnix
+    networks: 
+      - node-rede
+    ports: 
+      - "8080:80"  
+
+networks: 
+  node-rede:
+    driver: bridge
