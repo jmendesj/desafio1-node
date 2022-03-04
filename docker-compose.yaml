@@ -8,6 +8,7 @@ services:
     container_name: app
     networks: 
       - frontend-networks
+      - backend-networks
 
   proxy:
     build:
@@ -18,7 +19,24 @@ services:
     ports: 
       - "8080:80"  
 
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    volumes: 
+      - ./mysql:/var/lib/mysql
+    environment: 
+      - MYSQL_DATABASE=db_app
+      - MYSQL_ROOT_PASSWORD=root
+    networks: 
+      - backend-networks
+
+
 networks: 
   frontend-networks:
     name: frontend-networks
     driver: bridge
+  backend-networks:
+    name: backend-networks
+    driver: bridge  
