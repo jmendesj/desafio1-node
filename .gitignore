@@ -105,3 +105,6 @@ dist
 
 #asdf
 .tool-versions
+
+#data mysql
+mysql/data
