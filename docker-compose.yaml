@@ -19,7 +19,9 @@ services:
     networks: 
       - frontend-networks
     ports: 
-      - "8080:80"  
+      - "8080:80"
+    depends_on: 
+      - app     
 
   db:
     image: jmendej/desafio1-mysql
